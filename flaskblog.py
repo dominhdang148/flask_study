@@ -1,8 +1,17 @@
 from flask import Flask, render_template, url_for, flash, redirect
 from forms import *
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URL'] = 'sqlite:///site.db'
 app.config['SECRET_KEY'] = '7b53c5999707163a9cfdcb99a2feebf5'
+
+db = SQLAlchemy(app)
+
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(20), unique=True)
 
 
 posts = [
