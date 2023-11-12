@@ -6,6 +6,7 @@ from forms import *
 
 
 app = Flask(__name__)
+app.app_context().push()
 app.config['SECRET_KEY'] = '7b53c5999707163a9cfdcb99a2feebf5'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
